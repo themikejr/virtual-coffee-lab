@@ -1,0 +1,7 @@
+{
+  "name": "Virtual Coffee Lab",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
