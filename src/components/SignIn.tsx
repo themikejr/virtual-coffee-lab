@@ -13,6 +13,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonImg,
 } from "@ionic/react";
 import supabase from "../utils/supabase";
 
@@ -53,6 +54,18 @@ const SignIn: React.FC = () => {
       </IonHeader>
 
       <IonContent class="">
+        <IonImg
+          src="/vcl.png"
+          alt=""
+          className="ion-text-center"
+          style={{
+            maxWidth: "250px",
+            margin: "auto",
+            marginTop: "3rem",
+            marginBottom: "3rem",
+          }}
+        ></IonImg>
+
         <IonGrid fixed={true} justify-content-center>
           <IonRow class="ion-justify-content-center">
             <IonCol size-md="6" size-lg="6" size-xs="12">
