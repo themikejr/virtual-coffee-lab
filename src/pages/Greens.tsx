@@ -9,6 +9,11 @@ import {
   IonCol,
   IonRow,
   IonText,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonNote,
+  IonButton,
 } from "@ionic/react";
 import ExploreContainer from "../components/ExploreContainer";
 import "./Greens.css";
@@ -36,34 +41,53 @@ const Greens: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Greens</IonTitle>
+            <IonTitle
+              size="large"
+              style={{
+                width: "max-content",
+                minWidth: "0",
+                display: "inline-block",
+              }}
+            >
+              Greens
+            </IonTitle>
+            <IonButton
+              disabled={true}
+              fill="outline"
+              size="small"
+              style={{
+                width: "100px",
+                display: "inline-block",
+                marginTop: "-2rem",
+              }}
+            >
+              Add Green
+            </IonButton>
           </IonToolbar>
         </IonHeader>
-        <IonGrid fixed={true}>
-          <IonRow>
-            <IonText>
-              <h1>Current Inventory</h1>
-            </IonText>
-          </IonRow>
-          <IonRow>
-            <IonCol style={{ fontWeight: "bold" }}>Name</IonCol>
-            <IonCol style={{ fontWeight: "bold" }}>Country</IonCol>
-            <IonCol style={{ fontWeight: "bold" }}>Cultivar</IonCol>
-            <IonCol style={{ fontWeight: "bold" }}>Remaining</IonCol>
-          </IonRow>
 
-          {greens.length &&
-            greens.map((green: any) => {
+        {greens.length && (
+          <IonList inset={true}>
+            {greens.map((green: any) => {
               return (
-                <IonRow key={green.name}>
-                  <IonCol>{green.name}</IonCol>
-                  <IonCol>{green.country}</IonCol>
-                  <IonCol>{green.cultivar}</IonCol>
-                  <IonCol>{green.initial_quantity}</IonCol>
-                </IonRow>
+                <IonItem
+                  key={green.id}
+                  button={true}
+                  // onClick={() => {
+                  //   setSelectedRoast(roast);
+                  // }}
+                >
+                  <IonLabel>
+                    <h2>{`${green.name}, ${green.country}`}</h2>
+                    <p>{green.cultivar}</p>
+                  </IonLabel>
+
+                  <IonNote slot="end">{`${green.initial_quantity} lbs.`}</IonNote>
+                </IonItem>
               );
             })}
-        </IonGrid>
+          </IonList>
+        )}
       </IonContent>
     </IonPage>
   );

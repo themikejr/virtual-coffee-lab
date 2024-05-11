@@ -12,10 +12,11 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { server, speedometer, person, home } from "ionicons/icons";
+import { server, speedometer, person, home, library } from "ionicons/icons";
 import Home from "./pages/Home";
 import Greens from "./pages/Greens";
 import Roasts from "./pages/Roasts";
+import Library from "./pages/Library";
 import Account from "./pages/Account";
 import SignIn from "./components/SignIn";
 import supabase from "./utils/supabase";
@@ -90,6 +91,10 @@ const App: React.FC = () => {
               <Route path="/roasts">
                 <Roasts />
               </Route>
+              <Route path="/library">
+                <Library />
+              </Route>
+
               <Route path="/account">
                 <Account />
               </Route>
@@ -110,6 +115,10 @@ const App: React.FC = () => {
               <IonTabButton tab="roasts" href="/roasts">
                 <IonIcon aria-hidden="true" icon={speedometer} />
                 <IonLabel>Roasts</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="library" href="/library">
+                <IonIcon aria-hidden="true" icon={library} />
+                <IonLabel>Library</IonLabel>
               </IonTabButton>
               <IonTabButton tab="account" href="/account">
                 <IonIcon aria-hidden="true" icon={person} />

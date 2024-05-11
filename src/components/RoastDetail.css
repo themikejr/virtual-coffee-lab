@@ -1,0 +1,66 @@
+table {
+  margin-top: 6rem;
+}
+
+td {
+  padding: 8px;
+}
+
+tr > td:first-child {
+  padding-right: 8px;
+  text-align: right; /* Align text in the first column to the right */
+}
+
+tr > td:last-child {
+  padding-left: 8px;
+  text-align: left;
+}
+
+/* th, */
+/* td { */
+/* border-bottom: 1px solid #ddd; /* Optional: adds a line under each row */
+*/
+/* } */
+/* th { */
+/*   background-color: #f2f2f2; /* Light grey background for header */ */
+/* } */
+
+tr > td:first-child {
+  margin-right: 70px; /* Increase right padding to create a gap */
+}
+
+.roast-summary {
+  margin-bottom: 2rem;
+}
+
+.roast-summary .phase {
+  width: 30%;
+  display: inline-block;
+  text-align: center;
+  padding: 4px;
+}
+
+.roast-summary .phase-1 {
+  background-color: brown;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.roast-summary .phase-2 {
+  background-color: green;
+}
+
+.roast-summary .phase-3 {
+  background-color: blue;
+  border-radius: 0px 8px 8px 0px;
+}
+
+.roast-summary .phase .time {
+  text-align: center;
+  display: inline-block;
+}
+
+.roast-summary .phase .percent {
+  text-align: center;
+  display: inline-block;
+  font-size: 0.8rem;
+}
