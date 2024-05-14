@@ -15,7 +15,8 @@ export async function fetchGreens(db: SupabaseClient) {
 export async function fetchRoasts(db: SupabaseClient) {
   const { data, error } = await db
     .from("roast")
-    .select("*, green ( name, country )");
+    .select("*, green ( name, country )")
+    .order("roast_date", { ascending: false });
 
   if (error) {
     console.error("Error fetching data:", error);

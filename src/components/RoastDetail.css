@@ -38,6 +38,7 @@ tr > td:first-child {
   display: inline-block;
   text-align: center;
   padding: 4px;
+  color: white;
 }
 
 .roast-summary .phase-1 {

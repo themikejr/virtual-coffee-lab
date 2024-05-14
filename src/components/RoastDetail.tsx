@@ -130,20 +130,17 @@ const RoastDetail: React.FC<ContainerProps> = ({ roast }) => {
       </div>
       <table className="ion-text-center" style={{ margin: "auto" }}>
         <tbody>
-          {/* <tr> */}
-          {/*   <td>Weight Loss</td> */}
-          {/*   <td>11%</td> */}
-          {/* </tr> */}
-
           <tr>
             <td>Roast Length</td>
             <td>{roastLength}</td>
           </tr>
 
-          {/* <tr> */}
-          {/*   <td>Charge Temp</td> */}
-          {/*   <td>180ºF</td> */}
-          {/* </tr> */}
+          <tr>
+            <td>Weight Loss</td>
+            <td>
+              {roast.weight_loss ? `${roast.weight_loss}%` : "Not recorded"}
+            </td>
+          </tr>
 
           {/* <tr> */}
           {/*   <td>Drop Temp</td> */}
