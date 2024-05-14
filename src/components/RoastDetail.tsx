@@ -184,7 +184,7 @@ const RoastDetail: React.FC<ContainerProps> = ({ roast }) => {
           notes.map((note: any) => {
             return (
               <IonItem key={note.id}>
-                <IonCard>
+                <IonCard style={{ whiteSpace: "pre-wrap" }}>
                   <IonCardHeader>
                     <IonCardTitle>{note.user.display_name}</IonCardTitle>
                     <IonCardSubtitle>
