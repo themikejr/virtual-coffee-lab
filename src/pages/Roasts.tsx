@@ -12,6 +12,10 @@ import {
   IonButtons,
   IonButton,
   IonLabel,
+  IonFooter,
+  IonGrid,
+  IonRow,
+  IonCol,
 } from "@ionic/react";
 // import ExploreContainer from "../components/ExploreContainer";
 import RoastDetail from "../components/RoastDetail";
@@ -56,22 +60,6 @@ const Roasts: React.FC = () => {
             >
               Roasts
             </IonTitle>
-            <IonButton
-              id="open-add-roast-modal"
-              fill="outline"
-              size="small"
-              style={{
-                width: "100px",
-                display: "inline-block",
-                marginTop: "-2rem",
-              }}
-              // onClick={() => {
-              //   setShowAddRoastModal(true);
-              //   addRoastModal?.current.
-              // }}
-            >
-              Add Roast
-            </IonButton>
           </IonToolbar>
         </IonHeader>
 
@@ -98,6 +86,21 @@ const Roasts: React.FC = () => {
           </IonList>
         )}
       </IonContent>
+      <IonFooter>
+        <IonGrid style={{ marginBottom: "1rem" }}>
+          <IonRow class="ion-justify-content-center">
+            <IonCol size-md="6" size-lg="6" size-xs="12">
+              <IonButton
+                id="open-add-roast-modal"
+                fill="outline"
+                expand="block"
+              >
+                Add Roast
+              </IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonFooter>
 
       <IonModal
         ref={modal}

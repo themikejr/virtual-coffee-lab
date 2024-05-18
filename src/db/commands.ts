@@ -31,19 +31,33 @@ export async function saveNote(
   return data;
 }
 
-export async function saveRoast(db: SupabaseClient) {
+export async function saveRoast(
+  db: SupabaseClient,
+  green: number,
+  roastDate: string,
+  drySeconds: number,
+  fcsSeconds: number,
+  dropSeconds: number,
+  weightLoss: number,
+) {
   // const userId = await getUserId(db);
 
-  // const { data, error } = await db
-  //   .from("roast")
-  //   .insert([{ author: userId, roast: roastId, content: noteContent }]);
+  const { data, error } = await db.from("roast").insert([
+    {
+      green,
+      roast_date: roastDate,
+      dry_time: drySeconds,
+      fcs_time: fcsSeconds,
+      drop_time: dropSeconds,
+      weight_loss: weightLoss,
+    },
+  ]);
 
-  // if (error) {
-  //   console.error("Error inserting data:", error);
-  //   return null;
-  // }
+  if (error) {
+    console.error("Error inserting data:", error);
+    return null;
+  }
 
-  // console.log("Inserted data:", data);
-  // return data;
-  return;
+  console.log("Inserted data:", data);
+  return data;
 }
