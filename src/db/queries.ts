@@ -56,3 +56,14 @@ export async function searchVideos(db: SupabaseClient, searchTerm: string) {
   console.log("Notes for roast: ", data);
   return data;
 }
+
+export async function getCultivarValues(db: SupabaseClient) {
+  const { data, error } = await db.from("cultivar").select("*");
+
+  if (error) {
+    console.error("Error fetching cultivar values:", error);
+    return [];
+  }
+
+  return data;
+}

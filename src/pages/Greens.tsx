@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   IonContent,
   IonHeader,
@@ -14,14 +14,21 @@ import {
   IonLabel,
   IonNote,
   IonButton,
+  IonFooter,
+  IonModal,
+  IonButtons,
 } from "@ionic/react";
 import ExploreContainer from "../components/ExploreContainer";
 import "./Greens.css";
 import supabase from "../utils/supabase";
 import { fetchGreens } from "../db";
 
+import AddGreen from "../components/AddGreen";
+
 const Greens: React.FC = () => {
   const [greens, setGreens] = useState([]);
+
+  const addGreenModal = useRef<HTMLIonModalElement>(null);
 
   useEffect(() => {
     async function loadGreens() {
@@ -51,18 +58,6 @@ const Greens: React.FC = () => {
             >
               Greens
             </IonTitle>
-            <IonButton
-              disabled={true}
-              fill="outline"
-              size="small"
-              style={{
-                width: "100px",
-                display: "inline-block",
-                marginTop: "-2rem",
-              }}
-            >
-              Add Green
-            </IonButton>
           </IonToolbar>
         </IonHeader>
 
@@ -89,6 +84,52 @@ const Greens: React.FC = () => {
           </IonList>
         )}
       </IonContent>
+
+      <IonFooter>
+        <IonGrid style={{ marginBottom: "1rem" }}>
+          <IonRow class="ion-justify-content-center">
+            <IonCol size-md="6" size-lg="6" size-xs="12">
+              <IonButton
+                id="open-add-green-modal"
+                fill="outline"
+                expand="block"
+              >
+                Add Green
+              </IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonFooter>
+
+      <IonModal
+        ref={addGreenModal}
+        // isOpen={showAddRoastModal}
+        trigger="open-add-green-modal"
+        onWillDismiss={() => {
+          // setShowAddNoteModal(false);
+        }}
+      >
+        <IonHeader>
+          <IonToolbar>
+            <IonButtons slot="start">
+              <IonButton
+                onClick={() => {
+                  addGreenModal.current?.dismiss();
+                  return;
+                }}
+              >
+                Cancel
+              </IonButton>
+            </IonButtons>
+            <IonTitle className="ion-text-center">Add Green</IonTitle>
+            <IonButtons slot="end"></IonButtons>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          {" "}
+          <AddGreen modal={addGreenModal} />{" "}
+        </IonContent>
+      </IonModal>
     </IonPage>
   );
 };

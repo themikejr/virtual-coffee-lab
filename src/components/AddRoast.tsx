@@ -9,12 +9,12 @@ interface AddRoastProps {
 }
 
 const AddRoast: React.FC<AddRoastProps> = ({ modal }) => {
-  const [drySeconds, setDrySeconds] = useState(null);
-  const [fcsSeconds, setFcsSeconds] = useState(null);
-  const [dropSeconds, setDropSeconds] = useState(null);
-  const [weightLoss, setWeightLoss] = useState(null);
+  const [drySeconds, setDrySeconds] = useState<number | null>(null);
+  const [fcsSeconds, setFcsSeconds] = useState<number | null>(null);
+  const [dropSeconds, setDropSeconds] = useState<number | null>(null);
+  const [weightLoss, setWeightLoss] = useState<number | null>(null);
   const [greens, setGreens] = useState([]);
-  const [green, setGreen] = useState(null);
+  const [green, setGreen] = useState<number | null>(null);
   const [roastDate, setRoastDate] = useState(
     new Date().toISOString().split("T")[0],
   );
@@ -107,12 +107,12 @@ const AddRoast: React.FC<AddRoastProps> = ({ modal }) => {
                   onClick={() => {
                     saveRoast(
                       supabase,
-                      green,
+                      green ?? 0,
                       roastDate,
-                      drySeconds,
-                      fcsSeconds,
-                      dropSeconds,
-                      weightLoss,
+                      drySeconds ?? 0,
+                      fcsSeconds ?? 0,
+                      dropSeconds ?? 0,
+                      weightLoss ?? 0,
                     );
                     modal.current?.dismiss();
                   }}
@@ -131,7 +131,14 @@ const AddRoast: React.FC<AddRoastProps> = ({ modal }) => {
           presentation="date"
           value={roastDate}
           onIonChange={(event) => {
-            setRoastDate(event.detail.value);
+            const newRoastDate = event.detail?.value;
+            if (newRoastDate) {
+              if (Array.isArray(newRoastDate)) {
+                setRoastDate(newRoastDate[0]);
+              } else {
+                setRoastDate(newRoastDate);
+              }
+            }
           }}
         ></I.IonDatetime>
       </I.IonModal>

@@ -61,3 +61,40 @@ export async function saveRoast(
   console.log("Inserted data:", data);
   return data;
 }
+
+export async function saveGreen(
+  db: SupabaseClient,
+  name: string,
+  country: string,
+  region: string,
+  process: string,
+  elevationMasl: number,
+  initialQuantity: number,
+  importer: string,
+  cultivar: number,
+  purchaseDate: string,
+) {
+  // const userId = await getUserId(db);
+
+  const { data, error } = await db.from("green").insert([
+    {
+      name,
+      country,
+      region,
+      process,
+      elevation_masl: elevationMasl,
+      initial_quantity: initialQuantity,
+      importer,
+      cultivar,
+      date_purchased: purchaseDate,
+    },
+  ]);
+
+  if (error) {
+    console.error("Error inserting data:", error);
+    return null;
+  }
+
+  console.log("Inserted data:", data);
+  return data;
+}
