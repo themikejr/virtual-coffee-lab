@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import {
   IonContent,
   IonHeader,
@@ -29,6 +30,8 @@ const Greens: React.FC = () => {
   const [greens, setGreens] = useState([]);
 
   const addGreenModal = useRef<HTMLIonModalElement>(null);
+
+  const history = useHistory();
 
   useEffect(() => {
     async function loadGreens() {
@@ -68,9 +71,9 @@ const Greens: React.FC = () => {
                 <IonItem
                   key={green.id}
                   button={true}
-                  // onClick={() => {
-                  //   setSelectedRoast(roast);
-                  // }}
+                  onClick={() => {
+                    history.push("/greens/detail", { data: green });
+                  }}
                 >
                   <IonLabel>
                     <h2>{`${green.name}, ${green.country}`}</h2>

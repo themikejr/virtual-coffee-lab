@@ -15,6 +15,7 @@ import { IonReactRouter } from "@ionic/react-router";
 import { server, speedometer, person, home, library } from "ionicons/icons";
 import Home from "./pages/Home";
 import Greens from "./pages/Greens";
+import GreensDetail from "./pages/GreensDetail";
 import Roasts from "./pages/Roasts";
 import Library from "./pages/Library";
 import Account from "./pages/Account";
@@ -88,6 +89,10 @@ const App: React.FC = () => {
               <Route exact path="/greens">
                 <Greens />
               </Route>
+              <Route exact path="/greens/detail">
+                <GreensDetail />
+              </Route>
+
               <Route path="/roasts">
                 <Roasts />
               </Route>
