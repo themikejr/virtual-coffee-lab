@@ -34,7 +34,7 @@ const GreensDetail: React.FC = () => {
   // const addGreenModal = useRef<HTMLIonModalElement>(null);
 
   const history = useHistory();
-  const location = useLocation();
+  const location: any = useLocation();
 
   // useEffect(() => {
   //   async function loadGreens() {
