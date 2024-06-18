@@ -18,11 +18,16 @@ import {
   IonFooter,
   IonModal,
   IonButtons,
+  IonItemSliding,
+  IonItemOptions,
+  IonItemOption,
+  IonIcon,
 } from "@ionic/react";
+import { trash } from "ionicons/icons";
 import ExploreContainer from "../components/ExploreContainer";
 import "./Greens.css";
 import supabase from "../utils/supabase";
-import { fetchGreens } from "../db";
+import { fetchGreens, deleteGreen } from "../db";
 
 import AddGreen from "../components/AddGreen";
 
@@ -73,20 +78,36 @@ const Greens: React.FC = () => {
           <IonList inset={true}>
             {greens.map((green: any) => {
               return (
-                <IonItem
-                  key={green.id}
-                  button={true}
-                  onClick={() => {
-                    history.push("/greens/detail", { data: green });
-                  }}
-                >
-                  <IonLabel>
-                    <h2>{`${green.name}, ${green.country}`}</h2>
-                    <p>{green.cultivar}</p>
-                  </IonLabel>
+                <IonItemSliding key={green.id}>
+                  <IonItem
+                    key={green.id}
+                    button={true}
+                    onClick={() => {
+                      history.push("/greens/detail", { data: green });
+                    }}
+                  >
+                    <IonLabel>
+                      <h2>{`${green.name}, ${green.country}`}</h2>
+                      <p>{green.cultivar}</p>
+                    </IonLabel>
 
-                  <IonNote slot="end">{`${green.initial_quantity} lbs.`}</IonNote>
-                </IonItem>
+                    <IonNote slot="end">{`${green.initial_quantity} lbs.`}</IonNote>
+                  </IonItem>
+                  <IonItemOptions side="end">
+                    <IonItemOption color="danger">
+                      <IonButton
+                        color="danger"
+                        onClick={async () => {
+                          console.log("delete"!);
+                          await deleteGreen(supabase, green.id);
+                          loadGreens();
+                        }}
+                      >
+                        <IonIcon icon={trash} />
+                      </IonButton>
+                    </IonItemOption>
+                  </IonItemOptions>
+                </IonItemSliding>
               );
             })}
           </IonList>
@@ -111,11 +132,8 @@ const Greens: React.FC = () => {
 
       <IonModal
         ref={addGreenModal}
-        // isOpen={showAddRoastModal}
         trigger="open-add-green-modal"
-        onWillDismiss={() => {
-          // setShowAddNoteModal(false);
-        }}
+        onWillDismiss={() => {}}
       >
         <IonHeader>
           <IonToolbar>

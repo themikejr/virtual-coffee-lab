@@ -98,3 +98,17 @@ export async function saveGreen(
   console.log("Inserted data:", data);
   return data;
 }
+
+export async function deleteGreen(db: SupabaseClient, id: number) {
+  // const userId = await getUserId(db);
+
+  const { error } = await db.from("green").delete().eq("id", id);
+
+  if (error) {
+    console.error("Error deleting data:", error);
+    return null;
+  }
+
+  console.log("deleted data:", id);
+  // return data;
+}
