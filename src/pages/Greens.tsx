@@ -27,19 +27,24 @@ import { fetchGreens } from "../db";
 import AddGreen from "../components/AddGreen";
 
 const Greens: React.FC = () => {
-  const [greens, setGreens] = useState([]);
+  const [greens, setGreens] = useState<any[]>([]);
 
   const addGreenModal = useRef<HTMLIonModalElement>(null);
 
   const history = useHistory();
 
+  async function loadGreens() {
+    const greens: any = await fetchGreens(supabase);
+    setGreens(greens);
+  }
+
   useEffect(() => {
-    async function loadGreens() {
-      const greens: any = await fetchGreens(supabase);
-      setGreens(greens);
-    }
     loadGreens();
   }, []);
+
+  const onAddGreenClose = () => {
+    loadGreens();
+  };
 
   return (
     <IonPage>
@@ -130,7 +135,7 @@ const Greens: React.FC = () => {
         </IonHeader>
         <IonContent>
           {" "}
-          <AddGreen modal={addGreenModal} />{" "}
+          <AddGreen modal={addGreenModal} onClose={onAddGreenClose} />{" "}
         </IonContent>
       </IonModal>
     </IonPage>

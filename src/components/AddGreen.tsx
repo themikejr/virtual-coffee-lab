@@ -6,9 +6,10 @@ import supabase from "../utils/supabase";
 
 interface AddGreenProps {
   modal: RefObject<HTMLIonModalElement>;
+  onClose: Function;
 }
 
-const AddGreen: React.FC<AddGreenProps> = ({ modal }) => {
+const AddGreen: React.FC<AddGreenProps> = ({ modal, onClose }) => {
   const [name, setName] = useState("");
   const [country, setCountry] = useState("");
   const [region, setRegion] = useState("");
@@ -149,8 +150,8 @@ const AddGreen: React.FC<AddGreenProps> = ({ modal }) => {
                     !initialQuantity ||
                     !selectedCultivar
                   }
-                  onClick={() => {
-                    saveGreen(
+                  onClick={async () => {
+                    await saveGreen(
                       supabase,
                       name,
                       country,
@@ -163,6 +164,7 @@ const AddGreen: React.FC<AddGreenProps> = ({ modal }) => {
                       purchaseDate,
                     );
                     modal.current?.dismiss();
+                    onClose();
                   }}
                 >
                   Save
